@@ -2,6 +2,7 @@ package com.daniel.api_loja.model;
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ public class Produto {
     private Long id; 
 
     private String titulo;
+
+    private String marca;
 
     private LocalDate dataChegada;
 
@@ -43,6 +46,14 @@ public class Produto {
     
     public String getTitulo(){
         return titulo;
+    }
+
+    public void setMarca(String marca){
+        this.marca=marca;
+    }
+
+    public String getMarca(){
+        return marca;
     }
 
     public void setDataChegada(LocalDate dataChegada){
@@ -76,5 +87,6 @@ public class Produto {
     public Long getQuantidade(){
         return quantidade;
     }
+
 
 }

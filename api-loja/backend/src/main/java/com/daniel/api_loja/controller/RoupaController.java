@@ -12,36 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daniel.api_loja.model.Blusa;
-import com.daniel.api_loja.service.BlusaService;
+import com.daniel.api_loja.model.Roupa;
+import com.daniel.api_loja.service.RoupaService;
 
 @RestController
-@RequestMapping("/blusas")
-public class BlusaController {
+@RequestMapping("/roupas")
+public class RoupaController {
     
     @Autowired
-    private BlusaService blusaService;
+    private RoupaService roupaService;
 
+    //listar roupas
     @GetMapping
-    public List<Blusa> listar(){
-        return blusaService.listarBlusas();
+    public List<Roupa> listar(){
+        return roupaService.listarRoupas();
     }
 
+    //criar roupa
     @PostMapping
-    public Blusa criar(@RequestBody Blusa blusa){
-        return blusaService.criar(blusa);
+    public Roupa criar(@RequestBody Roupa roupa){
+        return roupaService.criarRoupa(roupa);
     }
 
+    //atualizar roupa
     @PutMapping("/{id}")
-    public Blusa atualizar(@PathVariable Long id, @RequestBody Blusa blusa){
-        return blusaService.atualizar(id, blusa);
+    public Roupa atualizar(@PathVariable Long id, @RequestBody Roupa roupa){
+        return roupaService.atualizarRoupa(id, roupa);
     }
 
+    //excluir roupa
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id){
-        blusaService.excluir(id);
+        roupaService.excluirRoupa(id);
     }
-
-
 
 }
