@@ -9,7 +9,7 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Usuario {
+public abstract class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

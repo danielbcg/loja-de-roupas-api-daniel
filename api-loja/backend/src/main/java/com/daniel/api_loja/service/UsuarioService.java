@@ -19,26 +19,4 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    //criar usuario
-    public Usuario criarUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
-    }
-
-    //atualizar usuarios por id (dados do mesmo)
-    public Usuario atualizarUsuario(Long id, Usuario dadosNovos){
-        Usuario usuario = usuarioRepository.findById(id)
-                            .orElseThrow(()->new RuntimeException("Usuário não encontrado."));
-        usuario.setCpf(dadosNovos.getCpf());
-        usuario.setEmail(dadosNovos.getEmail());
-        usuario.setNome(dadosNovos.getNome());
-        usuario.setSenha(dadosNovos.getSenha());
-        
-        return usuarioRepository.save(usuario);
-    }
-
-    //excluir usuario (por id)
-    public void excluirUsuario(Long id){
-        usuarioRepository.deleteById(id);
-    }
-
 }

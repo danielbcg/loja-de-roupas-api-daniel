@@ -14,7 +14,7 @@ public class Roupa extends Produto{
     private String tamanho;
 
     @Enumerated(EnumType.STRING)
-    private CategoriaRoupa categoriaRoupa;
+    private CategoriaRoupa categoria;
 
     //setters e getters
 
@@ -34,12 +34,12 @@ public class Roupa extends Produto{
         return tamanho;
     }
 
-    public void setCategoria(CategoriaRoupa categoriaRoupa){
-        this.categoriaRoupa=categoriaRoupa;
+    public void setCategoria(CategoriaRoupa categoria){
+        this.categoria=categoria;
     }
 
     public CategoriaRoupa getCategoria(){
-        return categoriaRoupa;
+        return categoria;
     }
 
     
