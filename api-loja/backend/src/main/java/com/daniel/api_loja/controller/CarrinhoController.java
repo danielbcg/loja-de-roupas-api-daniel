@@ -26,11 +26,6 @@ public class CarrinhoController {
     public List<Carrinho> listar(){
         return carrinhoService.listarCarrinhos();
     }
-
-    @PostMapping
-    public Carrinho criar(@RequestBody Carrinho carrinho){
-        return carrinhoService.criarCarrinho(carrinho);
-    }
     
     @PostMapping("/{carrinhoId}/adicionar/{produtoId}")
     public Carrinho adicionarProduto(@PathVariable Long carrinhoId, @PathVariable Long produtoId){

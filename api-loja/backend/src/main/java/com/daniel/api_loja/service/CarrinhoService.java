@@ -25,10 +25,6 @@ public class CarrinhoService {
         return carrinhoRepository.findAll();
     }
 
-    //criar carrinho
-    public Carrinho criarCarrinho(Carrinho carrinho){
-        return carrinhoRepository.save(carrinho);
-    }
 
     //adicionar produto do carrinho
     public Carrinho adicionarProduto(Long carrinhoId, Long produtoId){

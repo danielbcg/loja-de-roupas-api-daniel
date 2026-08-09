@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+### Application properties (contém senhas) ###
+application.properties
