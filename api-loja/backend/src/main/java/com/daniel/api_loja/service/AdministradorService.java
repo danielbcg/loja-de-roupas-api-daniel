@@ -3,6 +3,7 @@ package com.daniel.api_loja.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.daniel.api_loja.model.Administrador;
@@ -14,13 +15,17 @@ public class AdministradorService {
     @Autowired
     private AdministradorRepository administradorRepository;
 
-    //lsitar adms
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    //listar adms
     public List<Administrador> listarADMs(){
         return administradorRepository.findAll();
     }
 
     //criar adm
     public Administrador criarADM(Administrador adm){
+        adm.setSenha(passwordEncoder.encode(adm.getSenha()));
         return administradorRepository.save(adm);
     }
 
@@ -33,8 +38,7 @@ public class AdministradorService {
         adm.setCpf(dadosNovos.getCpf());
         adm.setEmail(dadosNovos.getEmail());
         adm.setNome(dadosNovos.getNome());
-        adm.setSenha(dadosNovos.getSenha());
-
+        // senha não é atualizada aqui — mesma lógica do ClienteService
 
         return administradorRepository.save(adm);
     }

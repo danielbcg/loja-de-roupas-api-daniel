@@ -1,5 +1,12 @@
 package com.daniel.api_loja.model;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +16,7 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario {
+public abstract class Usuario implements UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +65,36 @@ public abstract class Usuario {
     public String getCpf(){
         return cpf;
     }
+
+
+    // métodos exigidos pela interface UserDetails
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String tipo = this.getClass().getSimpleName().toUpperCase(); // "CLIENTE" ou "ADMINISTRADOR"
+        return List.of(new SimpleGrantedAuthority("ROLE_" + tipo));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
 
     
 }
