@@ -1,11 +1,14 @@
 package com.daniel.api_loja.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
+@JsonIgnoreProperties({"carrinho", "senha", "password", "authorities", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled", "username"})
 public class Cliente extends Usuario {
 
     private String endereco;

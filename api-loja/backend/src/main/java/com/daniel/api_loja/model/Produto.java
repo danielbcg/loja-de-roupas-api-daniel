@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,6 +31,18 @@ public class Produto {
     private Double preco;
 
     private Long quantidade;
+
+    @ManyToOne
+    @JoinColumn(name="vendedor_id")
+    private Cliente vendedor;
+
+    private boolean ativo = true;
+
+    @ManyToOne
+    @JoinColumn(name = "excluido_por_admin_id")
+    private Administrador excluidoPor;
+
+    private LocalDate dataExclusao;
 
     //Setteres e Getters
 
@@ -88,5 +102,33 @@ public class Produto {
         return quantidade;
     }
 
+    public void setVendedor(Cliente vendedor){
+        this.vendedor = vendedor;
+    }
+
+    public Cliente getVendedor(){
+        return vendedor;
+    }
+
+    public void setAtivo(boolean ativo){
+        this.ativo = ativo;
+    }
+    public boolean isAtivo(){
+        return ativo;
+    }
+
+    public void setExcluidoPor(Administrador excluidoPor){
+        this.excluidoPor = excluidoPor;
+    }
+    public Administrador getExcluidoPor(){
+        return excluidoPor;
+    }
+
+    public void setDataExclusao(LocalDate dataExclusao){
+        this.dataExclusao = dataExclusao;
+    }
+    public LocalDate getDataExclusao(){
+        return dataExclusao;
+    }
 
 }
