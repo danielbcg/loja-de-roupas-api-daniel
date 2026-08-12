@@ -29,9 +29,9 @@ public class PedidoService {
 
     @Transactional
     public Pedido checkout(Cliente cliente){
-        Carrinho carrinho = cliente.getCarrinho();
+        Carrinho carrinho = carrinhoRepository.findById(cliente.getCarrinho().getId())
+            .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
 
-        // Regra 1: carrinho vazio não pode gerar pedido
         if (carrinho.getItens().isEmpty()) {
             throw new RuntimeException("Carrinho vazio. Adicione produtos antes de finalizar a compra.");
         }
