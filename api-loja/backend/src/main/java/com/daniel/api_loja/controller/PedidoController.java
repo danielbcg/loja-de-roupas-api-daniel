@@ -33,4 +33,9 @@ public class PedidoController {
     public Pedido buscarPorId(@PathVariable Long id){
         return pedidoService.buscarPorId(id);
     }
+
+    @GetMapping("/todos")
+    public List<Pedido> listarTodos(){
+        return pedidoService.listarTodos();
+    }
 }

@@ -85,4 +85,8 @@ public class PedidoService {
         return pedidoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado."));
     }
+
+    public List<Pedido> listarTodos(){
+        return pedidoRepository.findAll();
+    }
 }

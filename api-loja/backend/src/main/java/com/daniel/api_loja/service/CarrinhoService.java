@@ -33,6 +33,10 @@ public class CarrinhoService {
         Produto produto = produtoRepository.findById(produtoId)
                             .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
+        if (!produto.isAtivo()) {
+            throw new RuntimeException("Este produto não está mais disponível.");
+        }
+
         carrinho.adicionarProduto(produto);
         carrinho.calcularTotal();
         return carrinhoRepository.save(carrinho);

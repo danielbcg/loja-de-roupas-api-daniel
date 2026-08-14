@@ -12,6 +12,7 @@ import com.daniel.api_loja.service.RoupaService;
 
 @RestController
 @RequestMapping("/roupas")
+@CrossOrigin(origins = "http://localhost:5173") //depois confirma com o claude, ve sobre o node.js tbm
 public class RoupaController {
     
     @Autowired
