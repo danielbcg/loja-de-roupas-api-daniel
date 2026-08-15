@@ -22,6 +22,11 @@ public class RoupaService {
         return roupaRepository.findByAtivoTrue();
     }
 
+    public Roupa buscarPorId(Long id){
+        return roupaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado."));
+    }
+
     //listar roupas do próprio vendedor (inclui removidas)
     public List<Roupa> listarPorVendedor(Cliente vendedor){
         return roupaRepository.findByVendedor(vendedor);

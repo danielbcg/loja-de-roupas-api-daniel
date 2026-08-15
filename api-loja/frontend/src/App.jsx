@@ -3,6 +3,8 @@ import { AuthProvider } from './context/AuthContext'
 import Header from './components/Header'
 import Auth from './pages/Auth'
 import Catalogo from './pages/Catalogo'
+import Produto from './pages/Produto'
+import Carrinho from './pages/Carrinho'
 
 function App() {
   return (
@@ -17,6 +19,24 @@ function App() {
               <Catalogo />
             </>
           }
+        />
+        <Route
+          path="/produtos/:id"
+          element={
+            <>
+              <Header />
+              <Produto />
+            </>
+          }
+        />
+        <Route
+         path="/carrinho"
+         element={
+          <>
+            <Header />
+            <Carrinho />
+          </>
+         }
         />
       </Routes>
     </AuthProvider>

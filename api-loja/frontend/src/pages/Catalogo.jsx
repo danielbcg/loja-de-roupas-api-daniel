@@ -27,7 +27,7 @@ export default function Catalogo() {
             to={`/produtos/${produto.id}`}
             className="group"
           >
-            <div className="aspect-3/4 bg-white border border-graphite/15 rounded-sm mb-3 flex items-center justify-center overflow-hidden group-hover:border-thread transition-colors">
+            <div className="aspect-[3/4] bg-white border border-graphite/15 rounded-sm mb-3 flex items-center justify-center overflow-hidden group-hover:border-thread transition-colors">
               <span className="font-mono text-xs text-graphite/40">SEM FOTO</span>
             </div>
             <p className="font-mono text-xs text-graphite tracking-wide">{produto.marca}</p>

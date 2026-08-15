@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daniel.api_loja.model.Carrinho;
+import com.daniel.api_loja.model.Cliente;
 import com.daniel.api_loja.model.Produto;
 import com.daniel.api_loja.repository.CarrinhoRepository;
 import com.daniel.api_loja.repository.ProdutoRepository;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarrinhoService {
@@ -23,6 +26,12 @@ public class CarrinhoService {
     //listar carrinhos
     public List<Carrinho> listarCarrinhos(){
         return carrinhoRepository.findAll();
+    }
+
+    @Transactional
+    public Carrinho buscarPorCliente(Cliente cliente){
+        return carrinhoRepository.findById(cliente.getCarrinho().getId())
+                .orElseThrow(() -> new RuntimeException("Carrinho não encontrado"));
     }
 
 

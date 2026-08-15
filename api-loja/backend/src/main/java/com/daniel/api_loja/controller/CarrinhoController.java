@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daniel.api_loja.model.Carrinho;
+import com.daniel.api_loja.model.Cliente;
 import com.daniel.api_loja.service.CarrinhoService;
+
+import org.springframework.security.core.Authentication;
+import com.daniel.api_loja.model.Cliente;
 
 @RestController
 @RequestMapping("/carrinhos")
@@ -24,6 +28,12 @@ public class CarrinhoController {
     @GetMapping
     public List<Carrinho> listar(){
         return carrinhoService.listarCarrinhos();
+    }
+
+    @GetMapping("/meu")
+    public Carrinho meuCarrinho(Authentication authentication){
+        Cliente cliente = (Cliente) authentication.getPrincipal();
+        return carrinhoService.buscarPorCliente(cliente);
     }
     
     @PostMapping("/{carrinhoId}/adicionar/{produtoId}")

@@ -24,16 +24,16 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente criarCliente(Cliente cliente){
-        cliente.setSenha(passwordEncoder.encode(cliente.getSenha()));
+        public Cliente criarCliente(Cliente cliente){
+            cliente.setSenha(passwordEncoder.encode(cliente.getSenha()));
 
-        Carrinho carrinho = new Carrinho();
-        carrinho.setDataCriacao(LocalDate.now());
-        carrinho.setValorTotal(0.0);
-        cliente.setCarrinho(carrinho);
+            Carrinho carrinho = new Carrinho();
+            carrinho.setDataCriacao(LocalDate.now());
+            carrinho.setValorTotal(0.0);
+            cliente.setCarrinho(carrinho);
 
-        return clienteRepository.save(cliente);
-    }
+            return clienteRepository.save(cliente);
+        }
 
     public Cliente atualizarCliente(Long id, Cliente dadosNovos){
         Cliente cliente = clienteRepository.findById(id)
