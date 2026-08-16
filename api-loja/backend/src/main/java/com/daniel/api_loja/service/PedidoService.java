@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,9 +82,21 @@ public class PedidoService {
         return pedidoRepository.findByCliente(cliente);
     }
 
-    public Pedido buscarPorId(Long id){
-        return pedidoRepository.findById(id)
+    public Pedido buscarPorId(Long id, Authentication authentication){
+        Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado."));
+ 
+        boolean isAdmin = authentication.getAuthorities().stream()
+                .anyMatch(autoridade -> autoridade.getAuthority().equals("ROLE_ADMINISTRADOR"));
+ 
+        if (!isAdmin) {
+            Cliente cliente = (Cliente) authentication.getPrincipal();
+            if (!pedido.getCliente().getId().equals(cliente.getId())) {
+                throw new RuntimeException("Você não tem permissão para ver este pedido.");
+            }
+        }
+ 
+        return pedido;
     }
 
     public List<Pedido> listarTodos(){

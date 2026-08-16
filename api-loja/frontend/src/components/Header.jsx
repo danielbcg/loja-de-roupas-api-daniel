@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ShoppingBag, User, Search } from 'lucide-react'
+import { ShoppingBag, User, Search, Package } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
@@ -29,8 +29,8 @@ export default function Header() {
 
           {autenticado ? (
             <div className="flex items-center gap-4">
-              <Link to="/conta" className="text-ink hover:text-thread transition-colors">
-                <User size={20} />
+              <Link to="/pedidos" className="text-ink hover:text-thread transition-colors" title="Meus pedidos">
+                <Package size={20} />
               </Link>
               <button
                 onClick={logout}

@@ -6,6 +6,7 @@ import Catalogo from './pages/Catalogo'
 import Produto from './pages/Produto'
 import Carrinho from './pages/Carrinho'
 import Pedido from './pages/Pedido'
+import Pedidos from './pages/Pedidos'
 
 function App() {
   return (
@@ -38,6 +39,15 @@ function App() {
             <Carrinho />
           </>
          }
+        />
+        <Route
+          path="/pedidos"
+          element={
+            <>
+              <Header />
+              <Pedidos />
+            </>
+          }
         />
         <Route
           path="/pedidos/:id"
