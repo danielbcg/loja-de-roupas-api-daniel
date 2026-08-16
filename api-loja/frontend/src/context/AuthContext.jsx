@@ -13,13 +13,18 @@ export function AuthProvider({ children }) {
     setToken(novoToken)
   }
 
+  async function cadastrar({ nome, email, senha, cpf, endereco, vendedor }) {
+    await api.post('/clientes', {nome, email, senha, cpf, endereco, vendedor})
+    await login(email,senha)
+  }
+
   function logout() {
     localStorage.removeItem('token')
     setToken(null)
   }
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, autenticado: !!token }}>
+    <AuthContext.Provider value={{ token, login, cadastrar, logout, autenticado: !!token }}>
       {children}
     </AuthContext.Provider>
   )
