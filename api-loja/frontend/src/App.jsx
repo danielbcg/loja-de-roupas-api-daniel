@@ -5,6 +5,7 @@ import Auth from './pages/Auth'
 import Catalogo from './pages/Catalogo'
 import Produto from './pages/Produto'
 import Carrinho from './pages/Carrinho'
+import Pedido from './pages/Pedido'
 
 function App() {
   return (
@@ -37,6 +38,15 @@ function App() {
             <Carrinho />
           </>
          }
+        />
+        <Route
+          path="/pedidos/:id"
+          element={
+            <>
+              <Header />
+              <Pedido />
+            </>
+          }
         />
       </Routes>
     </AuthProvider>
