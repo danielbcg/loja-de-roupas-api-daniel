@@ -8,6 +8,9 @@ import Carrinho from './pages/Carrinho'
 import Pedido from './pages/Pedido'
 import Pedidos from './pages/Pedidos'
 import Conta from './pages/Conta'
+import PostarProduto from './pages/PostarProduto'
+import MeusProdutos from './pages/MeusProdutos'
+import EditarProduto from './pages/EditarProduto'
 
 function App() {
   return (
@@ -68,6 +71,9 @@ function App() {
             </>
           }
         />
+        <Route path="/postar-produto" element={<> <Header /> <PostarProduto /> </>} />
+        <Route path="/meus-produtos" element={<> <Header /> <MeusProdutos /> </>} />
+        <Route path="/produtos/:id/editar" element={<> <Header /> <EditarProduto /> </>} /> 
       </Routes>
     </AuthProvider>
   )

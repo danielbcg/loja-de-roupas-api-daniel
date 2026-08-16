@@ -35,6 +35,14 @@ export default function Header() {
               <Link to="/conta" className="text-ink hover:text-thread transition-colors" title="Minha conta">
               <User size={20} />
               </Link>
+              <div className="w-px h-5 bg-graphite/20" />
+ 
+              <Link
+                to="/meus-produtos"
+                className="font-mono text-xs border border-graphite/30 text-ink px-3 py-2 rounded-sm hover:border-thread hover:text-thread transition-colors tracking-wide"
+              >
+                VENDER
+              </Link>
               <button
                 onClick={logout}
                 className="font-mono text-xs text-graphite hover:text-thread transition-colors tracking-wide"
