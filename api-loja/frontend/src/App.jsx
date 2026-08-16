@@ -11,10 +11,12 @@ import Conta from './pages/Conta'
 import PostarProduto from './pages/PostarProduto'
 import MeusProdutos from './pages/MeusProdutos'
 import EditarProduto from './pages/EditarProduto'
+import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
   return (
     <AuthProvider>
+      <ErrorBoundary>
       <Routes>
         <Route path="/login" element={<Auth />} />
         <Route
@@ -75,6 +77,7 @@ function App() {
         <Route path="/meus-produtos" element={<> <Header /> <MeusProdutos /> </>} />
         <Route path="/produtos/:id/editar" element={<> <Header /> <EditarProduto /> </>} /> 
       </Routes>
+      </ErrorBoundary>
     </AuthProvider>
   )
 }
