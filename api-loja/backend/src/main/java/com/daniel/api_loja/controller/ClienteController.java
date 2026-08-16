@@ -3,6 +3,7 @@ package com.daniel.api_loja.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,19 +28,24 @@ public class ClienteController {
         return clienteService.listarClientes();
     }
 
+    @GetMapping("/me")
+    public Cliente meuPerfil(Authentication authentication){
+        return (Cliente) authentication.getPrincipal();
+    }
+
     @PostMapping
     public Cliente criar(@RequestBody Cliente cliente){
         return clienteService.criarCliente(cliente);
     }
 
     @PutMapping("/{id}")
-    public Cliente atualizar(@RequestBody Cliente cliente, @PathVariable Long id){
-        return clienteService.atualizarCliente(id, cliente);
+    public Cliente atualizar(@RequestBody Cliente cliente, @PathVariable Long id, Authentication authentication){
+        return clienteService.atualizarCliente(id, cliente, authentication);
     }
 
     @DeleteMapping("/{id}")
-    public void excluir(@PathVariable Long id){
-        clienteService.excluirCliente(id);
+    public void excluir(@PathVariable Long id, Authentication authentication){
+        clienteService.excluirCliente(id, authentication);
     }
 
     

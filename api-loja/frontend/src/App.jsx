@@ -7,6 +7,7 @@ import Produto from './pages/Produto'
 import Carrinho from './pages/Carrinho'
 import Pedido from './pages/Pedido'
 import Pedidos from './pages/Pedidos'
+import Conta from './pages/Conta'
 
 function App() {
   return (
@@ -55,6 +56,15 @@ function App() {
             <>
               <Header />
               <Pedido />
+            </>
+          }
+        />
+        <Route
+          path="/conta"
+          element={
+            <>
+              <Header />
+              <Conta />
             </>
           }
         />

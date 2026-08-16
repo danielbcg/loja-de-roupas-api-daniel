@@ -32,6 +32,9 @@ export default function Header() {
               <Link to="/pedidos" className="text-ink hover:text-thread transition-colors" title="Meus pedidos">
                 <Package size={20} />
               </Link>
+              <Link to="/conta" className="text-ink hover:text-thread transition-colors" title="Minha conta">
+              <User size={20} />
+              </Link>
               <button
                 onClick={logout}
                 className="font-mono text-xs text-graphite hover:text-thread transition-colors tracking-wide"
