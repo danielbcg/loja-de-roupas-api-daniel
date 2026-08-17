@@ -1,6 +1,6 @@
 import { useState } from 'react'
-
-const CATEGORIAS = ['BLUSA', 'BERMUDA', 'CALCA', 'VESTIDO', 'JAQUETA']
+import { CATEGORIAS } from '../lib/categorias'
+import api from '../lib/api'
 
 export default function RoupaForm({ dadosIniciais, onSubmit, enviando, textoBotao }) {
   const [titulo, setTitulo] = useState(dadosIniciais?.titulo || '')
@@ -14,7 +14,31 @@ export default function RoupaForm({ dadosIniciais, onSubmit, enviando, textoBota
     dadosIniciais?.dataChegada || new Date().toISOString().slice(0, 10)
   )
   const [disponivel, setDisponivel] = useState(dadosIniciais?.disponivel ?? true)
+  const [imagemUrl, setImagemUrl] = useState(dadosIniciais?.imagemUrl || '')
+  const [enviandoImagem, setEnviandoImagem] = useState(false)
+  const [erroImagem, setErroImagem] = useState('')
   const [erro, setErro] = useState('')
+
+  async function selecionarArquivo(e) {
+    const arquivo = e.target.files[0]
+    if (!arquivo) return
+
+    setErroImagem('')
+    setEnviandoImagem(true)
+
+    const formData = new FormData()
+    formData.append('arquivo', arquivo)
+
+    try {
+      const { data } = await api.post('/uploads/imagem', formData)
+      setImagemUrl(data.url)
+    } catch (err) {
+      setErroImagem('Não foi possível enviar a imagem. Confere se ela tem no máximo 5MB.')
+    } finally {
+      setEnviandoImagem(false)
+      e.target.value = '' // permite selecionar o mesmo arquivo de novo se precisar
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -35,11 +59,47 @@ export default function RoupaForm({ dadosIniciais, onSubmit, enviando, textoBota
       quantidade: Number(quantidade),
       dataChegada,
       disponivel,
+      imagemUrl,
     })
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <div>
+        <label className="block font-mono text-xs text-graphite mb-1.5 tracking-wide">FOTO DO PRODUTO</label>
+
+        <div className="aspect-[3/4] max-h-64 bg-white border border-graphite/20 rounded-sm mb-3 flex items-center justify-center overflow-hidden">
+          {imagemUrl ? (
+            <img src={imagemUrl} alt="Prévia do produto" className="w-full h-full object-cover" />
+          ) : (
+            <span className="font-mono text-xs text-graphite/40">SEM FOTO</span>
+          )}
+        </div>
+
+        <input
+          type="text"
+          value={imagemUrl}
+          onChange={(e) => setImagemUrl(e.target.value)}
+          placeholder="Cola o link de uma imagem..."
+          className="w-full px-4 py-3 bg-white border border-graphite/20 rounded-sm focus:outline-none focus:border-thread transition-colors mb-2"
+        />
+
+        <label className="block">
+          <span className="font-mono text-xs border border-graphite/30 text-ink px-3 py-2 rounded-sm hover:border-thread hover:text-thread transition-colors tracking-wide inline-block cursor-pointer">
+            {enviandoImagem ? 'ENVIANDO...' : 'OU ENVIAR DO COMPUTADOR'}
+          </span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={selecionarArquivo}
+            disabled={enviandoImagem}
+            className="hidden"
+          />
+        </label>
+
+        {erroImagem && <p className="text-thread text-sm font-mono mt-2">{erroImagem}</p>}
+      </div>
+
       <div>
         <label className="block font-mono text-xs text-graphite mb-1.5 tracking-wide">TÍTULO</label>
         <input

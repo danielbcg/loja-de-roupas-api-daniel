@@ -59,8 +59,12 @@ export default function MeusProdutos() {
               key={produto.id}
               className="flex items-center gap-4 border border-graphite/15 rounded-sm p-4 bg-white"
             >
-              <div className="w-16 h-20 bg-canvas border border-graphite/15 shrink-0 flex items-center justify-center">
-                <span className="font-mono text-[10px] text-graphite/40">SEM FOTO</span>
+              <div className="w-16 h-20 bg-canvas border border-graphite/15 shrink-0 flex items-center justify-center overflow-hidden">
+                {produto.imagemUrl ? (
+                  <img src={produto.imagemUrl} alt={produto.titulo} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="font-mono text-[10px] text-graphite/40">SEM FOTO</span>
+                )}
               </div>
 
               <div className="flex-1">

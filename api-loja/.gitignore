@@ -36,3 +36,7 @@ build/
 
 ### Application properties (contém senhas) ###
 application.properties
+
+### Imagens enviadas pelos vendedores (arquivos locais, não vão pro repo) ###
+backend/uploads/
+uploads/

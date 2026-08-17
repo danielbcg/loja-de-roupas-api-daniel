@@ -49,8 +49,12 @@ export default function Produto() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-12">
 
-      <div className="aspect-[3/4] max-h-[560px] bg-white border border-graphite/15 rounded-sm flex items-center justify-center">
-        <span className="font-mono text-xs text-graphite/40">SEM FOTO</span>
+      <div className="aspect-[3/4] max-h-[560px] bg-white border border-graphite/15 rounded-sm flex items-center justify-center overflow-hidden">
+        {produto.imagemUrl ? (
+          <img src={produto.imagemUrl} alt={produto.titulo} className="w-full h-full object-cover" />
+        ) : (
+          <span className="font-mono text-xs text-graphite/40">SEM FOTO</span>
+        )}
       </div>
 
       <div>

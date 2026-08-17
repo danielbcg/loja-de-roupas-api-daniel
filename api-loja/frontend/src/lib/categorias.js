@@ -1,0 +1,1 @@
+export const CATEGORIAS = ['BLUSA', 'BERMUDA', 'CALCA', 'VESTIDO', 'JAQUETA']

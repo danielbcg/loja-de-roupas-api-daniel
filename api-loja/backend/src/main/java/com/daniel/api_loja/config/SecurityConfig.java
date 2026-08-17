@@ -61,6 +61,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/clientes").permitAll()
                 .requestMatchers(HttpMethod.GET, "/roupas", "/roupas/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/produtos", "/produtos/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                 .requestMatchers("/admins/**").hasRole("ADMINISTRADOR")
                 .requestMatchers("/pedidos/todos").hasRole("ADMINISTRADOR")
                 .anyRequest().authenticated()

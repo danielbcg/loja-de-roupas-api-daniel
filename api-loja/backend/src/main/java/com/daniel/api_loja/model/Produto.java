@@ -30,6 +30,8 @@ public class Produto {
 
     private Double preco;
 
+    private String imagemUrl;
+
     private Long quantidade;
 
     @ManyToOne
@@ -92,6 +94,14 @@ public class Produto {
 
     public Double getPreco(){
         return preco;
+    }
+
+    public void setImagemUrl(String imagemUrl){
+        this.imagemUrl = imagemUrl;
+    }
+ 
+    public String getImagemUrl(){
+        return imagemUrl;
     }
 
     public void setQuantidade(Long quantidade){

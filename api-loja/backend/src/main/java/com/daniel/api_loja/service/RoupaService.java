@@ -55,6 +55,7 @@ public class RoupaService {
         roupa.setCor(dadosNovos.getCor());
         roupa.setDataChegada(dadosNovos.getDataChegada());
         roupa.setDisponivel(dadosNovos.getDisponivel());
+        roupa.setImagemUrl(dadosNovos.getImagemUrl());
         roupa.setMarca(dadosNovos.getMarca());
         roupa.setPreco(dadosNovos.getPreco());
         roupa.setQuantidade(dadosNovos.getQuantidade());
